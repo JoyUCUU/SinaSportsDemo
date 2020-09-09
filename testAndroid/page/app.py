@@ -1,3 +1,4 @@
+import yaml
 from appium import webdriver
 
 from testAndroid.page.main import BasePage, Main
@@ -9,9 +10,11 @@ class App(BasePage):
 
     def start(self):
         caps = {}
+        name = yaml.safe_load(open("../page/configuration.yaml"))['caps']['udid']
+        print(name)
         caps = {
             'platformName': 'Android',
-            'deviceName': 'emulator-5554',
+            'deviceName': name,
             'appPackage': 'cn.com.sina.sports',
             'appActivity': '.app.MainActivity',
             # 记住上一次的弹窗，登陆等的信息，不会重置
@@ -23,6 +26,7 @@ class App(BasePage):
             'unicodeKeyBoard': 'true',
             'resetKeyBoard': 'true'
         }
+        print(caps)
         self._driver = webdriver.Remote('http://localhost:4723/wd/hub', caps)
         self._driver.implicitly_wait(3)
         return self
