@@ -18,6 +18,7 @@ class BasePage:
                 elements = self._driver.find_elements(*black)
                 if len(elements) > 0:
                     elements[0].click()
+                    elements[1].click()
                     break
             # 处理完黑名单后，再次找原来的元素
             return self._driver.find_element(locator, value)
