@@ -10,15 +10,15 @@ class App(BasePage):
 
     def start(self):
         caps = {}
-        name = yaml.safe_load(open("../page/configuration.yaml"))['caps']['udid']
-        print(name)
+        deviceName = yaml.safe_load(open("../page/configuration.yaml"))['caps']['udid']
+        print(type(deviceName))
         caps = {
             'platformName': 'Android',
-            'deviceName': name,
+            'deviceName': deviceName,
             'appPackage': 'cn.com.sina.sports',
             'appActivity': '.app.MainActivity',
             # 记住上一次的弹窗，登陆等的信息，不会重置
-            'noReset': 'true',
+            # 'noReset': 'true',
             # 之前停留在那个页面仍在哪个页面继续
             # 'dontStopAppOnReset': 'True',
             'skipDeviceInitialization': 'true',
